@@ -1,2 +1,2 @@
 # grammar-unit
-Python morphological analyzer / inflection (RU &amp; UK) microservice based on pymorphy2
+A minimalistic Python morphological analyzer / inflection (RU &amp; UK) microservice based on pymorphy2
