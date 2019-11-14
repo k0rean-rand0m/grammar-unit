@@ -1,5 +1,6 @@
 from flask import Flask, escape, request, abort, json
 import pymorphy2
+import json
 
 app = Flask('grammar-unit')
 morph = pymorphy2.MorphAnalyzer()
@@ -39,12 +40,16 @@ def index():
             })
 
     # Make a response
-    return json.jsonify({
+    return json.dumps({
         'code': 200,
         'message': resp
-    })
+    }, ensure_ascii=False)
 
 # Error handling
 @app.errorhandler(422)
 def unprocessable_entity(error):
     return '[422] Unprocessable Entity: looks like a required parameter was missing!', 422
+
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)
