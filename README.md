@@ -38,14 +38,15 @@ Get response via GET request to the api with params:
 - **word** *required* - the word for a morphology analysis / mutation
 - **in_case** - change case to a given
 - **in_number** - change number to a given
+- **num_agree** - turns the word in the form which is agree with a number (can be mixed with **in_case**)
 
 Requesting with **word** parameter only will lead to a response with full morphology analysis of the given word.
 Providing the request with **in_case** or/and **in_number** will resolve into a response with a mutated word.
 
 #### Possible values
-| in_case | in_number |
-----------|------------
-nomn | sing
+| in_case | in_number | num_agree |
+----------|-----------|------------
+nomn | sing | *any_number*
 gent | plur
 datv
 accs
