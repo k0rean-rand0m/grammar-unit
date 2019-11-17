@@ -11,6 +11,9 @@ def index():
     word = request.args.get("word", None)
     case = request.args.get("in_case", None)
     number = request.args.get("in_number", None)
+    num_agree = request.args.get("num_agree", None)
+    if not num_agree is None:
+        num_agree = int(num_agree)
     if not word:
         abort(422)
 
@@ -20,12 +23,15 @@ def index():
     orig_number = parse[0].tag.number
 
     # Applying changes and build response
-    if case or number:
+    if case or number or num_agree:
         inflect = parse[0].inflect({
             case or orig_case,
             number or orig_number
         })
-        resp = inflect.word
+        if num_agree:
+            resp = inflect.make_agree_with_number(num_agree).word
+        else:
+            resp = inflect.word
     else:
         resp = []
         for i in parse:
